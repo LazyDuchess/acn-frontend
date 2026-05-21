@@ -82,7 +82,9 @@ onBeforeUnmount(() => {
   <v-container class="fill-height d-flex align-center justify-center">
     <v-card elevation="6" class="pa-8">
       <div class="pa-8 text-center">
-        <h1 v-if="playerCount !== null">{{ playerCount }} Players In-Game</h1>
+        <h1 v-if="playerCount !== null">
+          {{ playerCount }} {{ playerCount === 1 ? 'Player' : 'Players' }} In-Game
+        </h1>
 
         <h1 v-else>Loading...</h1>
 
@@ -97,7 +99,7 @@ onBeforeUnmount(() => {
           <span>{{ stage.name }}</span>
           <span>
             {{ stage.count }}
-            {{ stage.count === 1 ? 'player' : 'players' }}
+            {{ stage.count === 1 ? 'Player' : 'Players' }}
           </span>
         </div>
       </div>
