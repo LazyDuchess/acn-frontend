@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+const apiBase = import.meta.env.VITE_API_BASE_URL
 </script>
 
 <template>
   <v-app>
     <v-app-bar :elevation="2">
       <v-app-bar-title>All City Network</v-app-bar-title>
+      <v-divider vertical></v-divider>
+      <v-btn :href="`${apiBase}/api/login`" class="me-4 ms-5"> Log In </v-btn>
       <v-divider vertical></v-divider>
       <v-btn
         target="blank"
