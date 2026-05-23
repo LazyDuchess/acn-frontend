@@ -21,6 +21,10 @@ onMounted(() => {
         <v-divider vertical></v-divider>
         <v-btn to="/me" class="me-4 ms-5"> {{ auth.user?.name }} </v-btn>
         <v-divider vertical></v-divider>
+        <template v-if="auth.user?.role == 'Admin'">
+          <v-btn to="/admin/server" class="me-4 ms-5"> Manage Server </v-btn>
+          <v-divider vertical></v-divider>
+        </template>
         <template v-if="auth.user?.role == 'Admin' || auth.user?.role == 'Mod'">
           <v-btn to="/mod/users" class="me-4 ms-5"> Manage Users </v-btn>
           <v-divider vertical></v-divider>
