@@ -5,8 +5,8 @@ import { useAuthStore } from '@/stores/auth'
 const apiBase = import.meta.env.VITE_API_BASE_URL
 const auth = useAuthStore()
 const motdfield = ref('')
-const namechangebox = ref('')
-const motdbox = ref('')
+const namechangebox = ref(true)
+const motdbox = ref(true)
 
 interface ManageServerResult {
   allowNameChanges: boolean
@@ -27,9 +27,11 @@ async function fetchServer() {
   }
 
   fetchedServer.value = await response.json()
-  motdfield.value = fetchedServer.value.motd
-  namechangebox.value = fetchedServer.value.allowNameChanges
-  motdbox.value = fetchedServer.value.alwaysShowMotd
+  if (fetchedServer.value != null) {
+    motdfield.value = fetchedServer.value.motd
+    namechangebox.value = fetchedServer.value.allowNameChanges
+    motdbox.value = fetchedServer.value.alwaysShowMotd
+  }
 }
 
 async function applyServer() {
