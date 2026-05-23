@@ -85,12 +85,13 @@ onMounted(async () => {
           </v-avatar>
 
           <div>
-            <div class="text-h4 font-weight-bold">
-              {{ auth.user?.name }}
-            </div>
+            <div class="text-h4 font-weight-bold">{{ auth.user?.name }}</div>
 
             <div class="text-subtitle-1 text-medium-emphasis mt-1">
               {{ auth.user?.role }}
+            </div>
+            <div class="text-subtitle-1 text-medium-emphasis mt-1">
+              Discord ID: {{ auth.user?.id }}
             </div>
           </div>
         </div>
