@@ -1,15 +1,34 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 const apiBase = import.meta.env.VITE_API_BASE_URL
+
+const auth = useAuthStore()
+
+onMounted(() => {
+  auth.fetchUser()
+})
 </script>
 
 <template>
   <v-app>
     <v-app-bar :elevation="2">
-      <v-app-bar-title>All City Network</v-app-bar-title>
-      <v-divider vertical></v-divider>
-      <v-btn :href="`${apiBase}/api/login`" class="me-4 ms-5"> Log In </v-btn>
-      <v-divider vertical></v-divider>
+      <v-app-bar-title class="cursor-pointer" @click="$router.push('/')"
+        >All City Network</v-app-bar-title
+      >
+      <template v-if="auth.isAuthenticated">
+        <v-divider vertical></v-divider>
+        <v-btn to="/me" class="me-4 ms-5"> {{ auth.user?.name }} </v-btn>
+        <v-divider vertical></v-divider>
+        <v-btn @click="auth.logout()" class="me-4 ms-5"> Log Out </v-btn>
+        <v-divider vertical></v-divider>
+      </template>
+      <template v-else>
+        <v-divider vertical></v-divider>
+        <v-btn :href="`${apiBase}/api/login`" class="me-4 ms-5"> Log In </v-btn>
+        <v-divider vertical></v-divider>
+      </template>
       <v-btn
         target="blank"
         href="https://thunderstore.io/c/bomb-rush-cyberfunk/p/Freesoul/All_City_Network/"
