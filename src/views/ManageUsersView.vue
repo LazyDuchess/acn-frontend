@@ -24,9 +24,8 @@ async function applyUser() {
   const newbadges: number[] = badgefield.value
     .split(',')
     .filter((x) => x.trim() !== '')
-    .map((x) => Number(x.trim()))
+    .map((x) => parseInt(x.trim(), 10))
     .filter((x) => !Number.isNaN(x))
-    .map((x) => parseInt(x, 10))
 
   await fetch(`${apiBase}/api/mod/set-user-manage`, {
     method: 'POST',
